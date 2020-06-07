@@ -1,0 +1,61 @@
+package studentdatabaseapp;
+
+import java.util.Scanner;
+
+public class Student {
+    private String firstName;
+    private String lastName;
+    private int gradeYear;
+    private String studentID;
+    private String courses = null;
+    private int tuitionBalance = 0;
+    private int costOfCourse = 600;
+    private static int id = 1000;
+
+    // Constructor: promot user to enter students name and year
+
+    public Student() {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Enter Student's First Name: ");
+        this.firstName = in.nextLine();
+
+        System.out.print("Enter Student's Last Name: ");
+        this.lastName = in.nextLine();
+
+        System.out.print("1 - Freshmen\n2 - Sophomore\n3 - Junior\n4 - Senior\nEnter Student's Class Level: ");
+        this.gradeYear = in.nextInt();
+        System.out.println(firstName + " " + lastName + " " + gradeYear);
+
+        setStudentID();
+
+        System.out.println(firstName + " " + lastName + " " + gradeYear + " " + studentID);
+
+    }
+
+    // Generate an ID
+    private void setStudentID() {
+        //Grade Level + ID
+        // the id++ increases the student ID for each student
+        id++;
+        this.studentID =  gradeYear + "" + id;
+    }
+
+    // Enroll in courses
+    public void enroll() {
+        // Get inside a loop, user hits 0
+        do {
+            System.out.print("Enter Course to Enroll (Q to quit): ");
+            Scanner in = new Scanner(System.in);
+            String course = in.nextLine();
+            if (!course.equals("Q")) {
+                courses = courses + "\n" + course;
+                tuitionBalance = tuitionBalance + costOfCourse;
+            } else {
+                break;
+            }
+        } while (1 != 0);
+
+        System.out.println("ENROLLED IN: " + courses);
+        System.out.println("TUITION BALANCE: " + tuitionBalance);
+    }
+}
